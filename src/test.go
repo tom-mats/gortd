@@ -1,22 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func sub(x interface{}, y interface{}) int {
+	dif := 0
+	intX, okX := x.(int)
+	intY, okY := y.(int)
+	if okX && okY {
+		dif = intX - intY
+	}
+	return dif
+}
 
 func main() {
-	var name string
-	name = "Bob"
-
-	fmt.Println(name) //=> Bob
-
-	var name2 = "Alice"
-
-	fmt.Println(name2) //=> Alice
-
-	var num, num2 int = 1, 9
-
-	fmt.Println(num, num2) //=> 1 2
-
-	isChecked := true
-
-	fmt.Printf("%v", isChecked) //=> true
+	const Loop = 10
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < Loop; i++ {
+		fmt.Println("now is", rand.Intn(1000), sub(20, i*5))
+	}
 }
